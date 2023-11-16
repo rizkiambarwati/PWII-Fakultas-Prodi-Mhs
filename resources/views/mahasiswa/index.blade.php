@@ -21,8 +21,8 @@
                             <th>Tempat Lahir</th>
                             <th>Tanggal Lahir</th>
                             <th>Foto</th>
-                            <th>Nama Prodi</th>
-                            <th>Nama Fakultas</th>
+                            <th>Program Studi</th>
+                            <th>Fakultas</th>
                             <th>Aksi</th>
                         </tr>
                       </thead>
@@ -33,9 +33,23 @@
                             <td>{{ $item['nama']}}</td>
                             <td>{{ $item['tempat_lahir']}}</td>
                             <td>{{ $item['tanggal_lahir']}}</td>
-                            <td><img src="images/{{ $item['foto'] }}" class="rounded-circle" width="100px"/></td>
+                            <td>
+                                <img src="images/{{ $item['foto'] }}" class="rounded-circle" width="100px"/>
+                            </td>
                             <td>{{ $item['prodi']['nama']}}</td>
                             <td>{{ $item['prodi']['fakultas']['nama']}}</td>
+                            <td>
+                                <div class="d-flex justify-content-center">
+                                    <a href="{{ route('mahasiswa.edit', $item->id) }}">
+                                        <button class="btn btn-success btn-sm mx-3">Edit</button>
+                                    </a>
+                                    <form method="post" action="{{ route('mahasiswa.destroy', $item->id) }}">
+                                    @method('delete')
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    </form>
+                                </div>
+                            </td>
                         </tr>
                     </tbody>
                       <tbody>
@@ -46,5 +60,13 @@
                 </div>
               </div>
             </div>
-            </div>
+        </div>
+    @endsection
+
+    @section('scripts')
+    <script>
+        @if (Session::get('success'))
+            toastr.success("{{ Session::get('success') }}");
+        @endif
+    </script>
     @endsection
