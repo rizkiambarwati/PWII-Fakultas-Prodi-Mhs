@@ -52,24 +52,35 @@ class FakultasController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Fakultas $fakultas)
+    public function edit($id)
     {
-        //
+        //dd($fakultas);
+        $fakultas = Fakultas::find($id);
+        return view('fakultas.edit')->with('fakultas', $fakultas);
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Fakultas $fakultas)
+    public function update(Request $request, $id)
     {
-        //
+        $validasi =  $request->validate([
+            "nama" => "required"
+        ]);
+        Fakultas::find($id)->update($validasi);
+
+        return redirect('fakultas')->with('success', 'Data Fakultas Berhasil Diubah');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Fakultas $fakultas)
+    public function destroy($id)
     {
-        //
+        $fakultas = Fakultas::find($id);
+        //dd($fakultas);
+        $fakultas->delete();
+        return redirect('fakultas')->with('success', 'Data Fakultas Berhasil Dihapus');
     }
 }

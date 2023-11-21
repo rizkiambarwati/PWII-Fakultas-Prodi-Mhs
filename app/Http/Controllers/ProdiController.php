@@ -54,7 +54,8 @@ class ProdiController extends Controller
      */
     public function edit(Prodi $prodi)
     {
-        //
+         $fakultas = Fakultas::all();
+         return view("prodi.edit")->with("prodi", $prodi)->with("fakultas", $fakultas);
     }
 
     /**
@@ -62,7 +63,15 @@ class ProdiController extends Controller
      */
     public function update(Request $request, Prodi $prodi)
     {
-        //
+        $validasi = $request->validate([
+            "nama" => "required",
+            "fakultas_id" => "required"
+        ]);
+
+        $prodi->update($validasi);
+        //atau pakai cara dibawah ini
+        //prodi::where('id', $prodi->id)->update($validasi);
+        return redirect("prodi")->with("success", "Data Berhasil Dihapus");
     }
 
     /**
@@ -70,6 +79,7 @@ class ProdiController extends Controller
      */
     public function destroy(Prodi $prodi)
     {
-        //
+        $prodi -> delete();
+        return redirect()->route("prodi.index")->with("success", "Berhasil Dihapus");
     }
 }

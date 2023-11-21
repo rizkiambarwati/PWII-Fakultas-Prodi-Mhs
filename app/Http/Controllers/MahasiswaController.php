@@ -73,7 +73,19 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, Mahasiswa $mahasiswa)
     {
-        //
+        // $validasi = $request->validate([
+        //     "npm" => "required",
+        //     "nama" => "required",
+        //     "tempat_lahir" => "required",
+        //     "tanggal_lahir" => "required",
+        //     "prodi_id" => "required",
+        //     "foto" => "required",
+        // ]);
+
+        // $mahasiswa->update($validasi);
+        // //atau pakai cara dibawah ini
+        // //prodi::where('id', $prodi->id)->update($validasi);
+        // return redirect("mahasiswa")->with("success", "Data Berhasil Dihapus");
     }
 
     /**

@@ -25,6 +25,20 @@
                          <tr>
                             <td>{{ $item['nama']}}</td>
                             <td>{{ $item['fakultas']['nama'] }}</td>
+
+                             <td>
+                                <div class="d-flex justify-content-center">
+                                    <a href="{{ route('prodi.edit', $item->id) }}">
+                                        <button class="btn btn-success btn-sm mx-3">Edit</button>
+                                    </a>
+                                    <form method="post" action="{{ route('prodi.destroy', $item->id) }}">
+                                    @method('delete')
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger btn-sm show_confirm"
+                                            data-toggle="tooltip" title='Delete'
+                                            data-nama='{{ $item->nama }}'">Delete</button>
+                                    </form>
+                                </div>
                         </tr>
                      </tbody>
                       <tbody>
