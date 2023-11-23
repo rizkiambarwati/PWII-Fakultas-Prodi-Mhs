@@ -73,19 +73,27 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, Mahasiswa $mahasiswa)
     {
-        // $validasi = $request->validate([
-        //     "npm" => "required",
-        //     "nama" => "required",
-        //     "tempat_lahir" => "required",
-        //     "tanggal_lahir" => "required",
-        //     "prodi_id" => "required",
-        //     "foto" => "required",
-        // ]);
+         $validasi = $request->validate([
+            "npm" => "required",
+            "nama" => "required",
+            "tempat_lahir" => "required",
+            "tanggal_lahir" => "required",
+            "prodi_id" => "required",
+            "foto" => "image|nullable"
+        ]);
 
-        // $mahasiswa->update($validasi);
-        // //atau pakai cara dibawah ini
-        // //prodi::where('id', $prodi->id)->update($validasi);
-        // return redirect("mahasiswa")->with("success", "Data Berhasil Dihapus");
+        if($request->foto != null) {
+        //ambil extensi file foto
+        $ext = $request->foto->getClientOriginalExtension();
+        //rename file
+        $validasi["foto"] = $request->npm.".".$ext;
+        //upload file foto ke dalam folder public/foto
+        $request->foto->move(public_path('images'), $validasi["foto"]);
+        }
+       //simpan data ke tabel mahasiswa
+       $mahasiswa->update($validasi);
+       return redirect("mahasiswa")->with("success","Data Mahasiswa Berhasil Disimpan");
+
     }
 
     /**

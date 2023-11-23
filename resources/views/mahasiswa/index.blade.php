@@ -46,7 +46,9 @@
                                     <form method="post" action="{{ route('mahasiswa.destroy', $item->id) }}">
                                     @method('delete')
                                     @csrf
-                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    <button type="submit" class="btn btn-danger btn-sm show_confirm"
+                                            data-toggle="tooltip" title='Delete'
+                                            data-nama='{{ $item->nama }}'">Delete</button>
                                     </form>
                                 </div>
                             </td>
