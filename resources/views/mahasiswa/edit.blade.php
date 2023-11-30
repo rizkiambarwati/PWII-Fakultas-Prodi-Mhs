@@ -51,6 +51,16 @@
                         </div>
 
                         <div class="form-group">
+                            <input type="radio" id="jk" name="jk" value="L" @checked('{{ $mahasiswa->jk }}')>
+                            <label for="jk">Laki-Laki</label>
+                            <input type="radio" id="jk" name="jk" value="P" @checked('{{ $mahasiswa->jk }}')>
+                            <label for="jk">Perempuan</label>
+                            @error('jk')
+                                <label class="text-danger">{{ $message }} </label>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
                             <label for="foto">Foto</label>
                             <input type="file" class="form-control" name="foto" placeholder="Foto">
                             @error('foto')

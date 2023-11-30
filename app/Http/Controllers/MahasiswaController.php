@@ -36,6 +36,7 @@ class MahasiswaController extends Controller
             "nama" => "required",
             "tempat_lahir" => "required",
             "tanggal_lahir" => "required",
+            "jk" => "required",
             "prodi_id" => "required",
             "foto" => "required|image"  //nama tabel
         ]);
@@ -78,6 +79,7 @@ class MahasiswaController extends Controller
             "nama" => "required",
             "tempat_lahir" => "required",
             "tanggal_lahir" => "required",
+            "jk" => "required",
             "prodi_id" => "required",
             "foto" => "image|nullable"
         ]);
