@@ -24,12 +24,20 @@ Route::get('/', function () {
 //     return view('fakultas');
 // });
 
-Route::middleware('auth')->group(function() {
+//Contoh Authorization
+//Admin
+Route::middleware(['auth', 'checkRole:A'])->group(function() {
     Route::resource('fakultas', FakultasController::class);
     Route::resource('prodi',ProdiController::class);
     Route::resource('mahasiswa', MahasiswaController::class);
 
 });
+
+//User (hanya bisa melihat data fakultas)
+Route::middleware(['auth', 'checkRole:U'])->group(function() {
+    Route::get('fakultas', [FakultasController::class, 'index'])->name('fakultas.index');
+});
+
 
 // Route::get('/prodi', function () {
 //     return view('prodi');
@@ -46,4 +54,4 @@ Route::middleware('auth')->group(function() {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware(['checkRole:A,U'])->name('home');

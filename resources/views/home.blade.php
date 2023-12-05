@@ -92,6 +92,15 @@
                                 </p>
                             </figure>
                         </div>
+
+                        <div class="col-md-6">
+                            <figure class="highcharts-figure">
+                                <div id="container-jk-prodi"></div>
+                                <p class="highcharts-description">
+
+                                </p>
+                            </figure>
+                        </div>
                     </div>
 
                     {{-- css --}}
@@ -151,7 +160,7 @@
                                 type: 'column'
                             },
                             title: {
-                                text: 'Grafik Mahasiswa per program studi',
+                                text: 'Grafik Mahasiswa per Program Studi',
                                 align: 'center'
                             },
                             subtitle: {
@@ -309,6 +318,65 @@
                                     @endforeach
                                 ]
                             }]
+                        });
+                    </script>
+
+                    <script>
+                        Highcharts.chart('container-jk-prodi', {
+                            chart: {
+                                type: 'column'
+                            },
+                            title: {
+                                text: 'Mahasiswa Berdasarkan JK dalam Program Studi',
+                                align: 'center'
+                            },
+                            subtitle: {
+                                text: '',
+                                align: 'left'
+                            },
+                            xAxis: {
+                                categories: [
+                                    @foreach ($grafik_jk_prodi as $item)
+                                        '{{ $item->nama }}',
+                                    @endforeach
+                                ],
+                                crosshair: true,
+                                accessibility: {
+                                    description: ''
+                                }
+                            },
+                            yAxis: {
+                                min: 0,
+                                title: {
+                                    text: 'Mahasiswa'
+                                }
+                            },
+                            tooltip: {
+                                valueSuffix: ' (orang)'
+                            },
+                            plotOptions: {
+                                column: {
+                                    pointPadding: 0.2,
+                                    borderWidth: 0
+                                }
+                            },
+                            series: [{
+                                    name: 'Laki',
+                                    data: [
+                                        @foreach ($grafik_jk_prodi as $item)
+                                            {{ $item->laki }},
+                                        @endforeach
+                                    ]
+                                },
+                                {
+                                    name: 'Perempuan',
+                                    data: [
+                                        @foreach ($grafik_jk_prodi as $item)
+                                            {{ $item->perempuan }},
+                                        @endforeach
+                                    ]
+                                }
+                            ]
                         });
                     </script>
                 </div>
