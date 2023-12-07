@@ -31,6 +31,7 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request)
     {
+         $this->authorize('create', Mahasiswa::class);
          $validasi = $request->validate([
             "npm" => "required|unique:mahasiswas",
             "nama" => "required",
@@ -74,6 +75,8 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, Mahasiswa $mahasiswa)
     {
+        $this->authorize('edit', $mahasiswa);
+
          $validasi = $request->validate([
             "npm" => "required",
             "nama" => "required",
@@ -103,6 +106,8 @@ class MahasiswaController extends Controller
      */
     public function destroy(Mahasiswa $mahasiswa)
     {
+        $this->authorize('delete', $mahasiswa);
+
         $mahasiswa -> delete();
         return redirect()->route("mahasiswa.index")->with("success", "Berhasil Dihapus");
     }

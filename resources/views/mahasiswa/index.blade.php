@@ -11,7 +11,11 @@
                         <p class="card-description">
                             Daftar Mahasiswa di Universitas Multi Data Palembang
                         </p>
-                        <a href="{{ route('mahasiswa.create') }}" class= "btn btn-primary btn-rounded btn-fw">Tambah</a>
+
+                        @can('create', App\Prodi::class)
+                            <a href="{{ route('mahasiswa.create') }}" class= "btn btn-primary btn-rounded btn-fw">Tambah</a>
+                        @endcan
+
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
@@ -43,16 +47,24 @@
                                             <td>{{ $item['prodi']['fakultas']['nama'] }}</td>
                                             <td>
                                                 <div class="d-flex justify-content-center">
-                                                    <a href="{{ route('mahasiswa.edit', $item->id) }}">
-                                                        <button class="btn btn-success btn-sm mx-3">Edit</button>
-                                                    </a>
+
+                                                    @can('edit', $item)
+                                                        <a href="{{ route('mahasiswa.edit', $item->id) }}">
+                                                            <button class="btn btn-success btn-sm mx-3">Edit</button>
+                                                        </a>
+                                                    @endcan
+
                                                     <form method="post"
                                                         action="{{ route('mahasiswa.destroy', $item->id) }}">
                                                         @method('delete')
                                                         @csrf
-                                                        <button type="submit" class="btn btn-danger btn-sm show_confirm"
-                                                            data-toggle="tooltip" title='Delete'
-                                                            data-nama='{{ $item->nama }}'">Delete</button>
+
+                                                        @can('delete', $item)
+                                                            <button type="submit" class="btn btn-danger btn-sm show_confirm"
+                                                                data-toggle="tooltip" title='Delete'
+                                                                data-nama='{{ $item->nama }}'">Delete</button>
+                                                        @endcan
+
                                                     </form>
                                                 </div>
                                             </td>

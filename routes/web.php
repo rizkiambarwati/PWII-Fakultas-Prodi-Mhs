@@ -26,7 +26,7 @@ Route::get('/', function () {
 
 //Contoh Authorization
 //Admin
-Route::middleware(['auth', 'checkRole:A'])->group(function() {
+Route::middleware(['auth'])->group(function() { //Jika dihapus kurung siku bisa diakses tanpa login
     Route::resource('fakultas', FakultasController::class);
     Route::resource('prodi',ProdiController::class);
     Route::resource('mahasiswa', MahasiswaController::class);
@@ -34,9 +34,9 @@ Route::middleware(['auth', 'checkRole:A'])->group(function() {
 });
 
 //User (hanya bisa melihat data fakultas)
-Route::middleware(['auth', 'checkRole:U'])->group(function() {
-    Route::get('fakultas', [FakultasController::class, 'index'])->name('fakultas.index');
-});
+// Route::middleware(['auth', 'checkRole:U'])->group(function() {
+//     Route::get('fakultas', [FakultasController::class, 'index'])->name('fakultas.index');
+// });
 
 
 // Route::get('/prodi', function () {
