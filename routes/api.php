@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\API\FakultasController;
+use App\Http\Controllers\API\MahasiswaController;
+use App\Http\Controllers\API\ProdiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +20,15 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+//GET
+Route::get('fakultas', [FakultasController::class, 'index']);
+
+Route::get('prodi', [ProdiController::class, 'index']);
+
+Route::get('mahasiswa', [MahasiswaController::class, 'index']);
+
+//POST
+Route::post('fakultas', [FakultasController::class, 'store']);
+
+Route::post('prodi', [ProdiController::class, 'store']);
