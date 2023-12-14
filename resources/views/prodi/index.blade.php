@@ -21,6 +21,7 @@
                                 <tr>
                                     <th>Nama Prodi</th>
                                     <th>Nama Fakultas</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -30,9 +31,9 @@
                                         <td>{{ $item['fakultas']['nama'] }}</td>
                                         <td>
 
-                                            <div class="d-flex justify-content-center">
+                                            <div class="d-flex justify-content-left">
 
-                                                @can('edit', $item)
+                                                @can('update', $item)
                                                     <a href="{{ route('prodi.edit', $item->id) }}">
                                                         <button class="btn btn-success btn-sm mx-3">Edit</button>
                                                     </a>

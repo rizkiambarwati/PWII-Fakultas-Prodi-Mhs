@@ -32,3 +32,13 @@ Route::get('mahasiswa', [MahasiswaController::class, 'index']);
 Route::post('fakultas', [FakultasController::class, 'store']);
 
 Route::post('prodi', [ProdiController::class, 'store']);
+
+Route::post('mahasiswa', [MahasiswaController::class, 'store']);
+
+//PATCH (UPDATE)
+Route::patch('fakultas/{id}', [FakultasController::class, 'update']);
+Route::patch('prodi/{id}', [FakultasController::class, 'update']);
+
+//DELETE
+Route::delete('fakultas/{id}', [FakultasController::class, 'destroy']);
+Route::delete('prodi/{id}', [FakultasController::class, 'destroy']);

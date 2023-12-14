@@ -48,7 +48,7 @@
                                             <td>
                                                 <div class="d-flex justify-content-center">
 
-                                                    @can('edit', $item)
+                                                    @can('update', $item)
                                                         <a href="{{ route('mahasiswa.edit', $item->id) }}">
                                                             <button class="btn btn-success btn-sm mx-3">Edit</button>
                                                         </a>

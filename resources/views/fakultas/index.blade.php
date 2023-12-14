@@ -32,6 +32,8 @@
 
                                                 @if (Auth::user()->role == 'A')
                                                     <a href="{{ route('fakultas.edit', $item->id) }}">
+                                                        <button class="class btn btn-success btn-sm mx-3">Edit</button>
+
                                                         <a href="{{ route('fakultas.edit', $item->id) }}">
                                                             <form method="post"
                                                                 action="{{ route('fakultas.destroy', $item->id) }}">
