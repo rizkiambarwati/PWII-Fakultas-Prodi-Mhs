@@ -26,11 +26,10 @@ Route::get('/', function () {
 
 //Contoh Authorization
 //Admin
-Route::middleware(['auth'])->group(function() { //Jika dihapus kurung siku bisa diakses tanpa login
+Route::middleware(['auth'])->group(function () { //Jika dihapus kurung siku bisa diakses tanpa login
     Route::resource('fakultas', FakultasController::class);
-    Route::resource('prodi',ProdiController::class);
+    Route::resource('prodi', ProdiController::class);
     Route::resource('mahasiswa', MahasiswaController::class);
-
 });
 
 //User (hanya bisa melihat data fakultas)
