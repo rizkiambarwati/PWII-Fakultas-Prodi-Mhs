@@ -29,7 +29,7 @@ Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 
 //MIDDLEWARE
-Route::middleware('auth:sanctum')->get('fakultas', [FakultasController::class, 'index']);
+//Route::middleware('auth:sanctum')->get('fakultas', [FakultasController::class, 'index']);
 
 Route::middleware(['auth:sanctum', 'ability:read-fakultas'])->get('fakultas', [FakultasController::class, 'index']);
 Route::middleware(['auth:sanctum', 'ability:create-fakultas'])->post('fakultas', [FakultasController::class, 'store']);
@@ -37,19 +37,19 @@ Route::middleware(['auth:sanctum', 'ability:update-fakultas'])->patch('fakultas/
 Route::middleware(['auth:sanctum', 'ability:delete-fakultas'])->delete('fakultas/{id}', [FakultasController::class, 'destroy']);
 
 //GET
-//Route::get('fakultas', [FakultasController::class, 'index']);
-Route::get('prodi', [ProdiController::class, 'index']);
-Route::get('mahasiswa', [MahasiswaController::class, 'index']);
+// Route::get('fakultas', [FakultasController::class, 'index']);
+// Route::get('prodi', [ProdiController::class, 'index']);
+// Route::get('mahasiswa', [MahasiswaController::class, 'index']);
 
-//POST
-Route::post('fakultas', [FakultasController::class, 'store']);
-Route::post('prodi', [ProdiController::class, 'store']);
-Route::post('mahasiswa', [MahasiswaController::class, 'store']);
+// //POST
+// Route::post('fakultas', [FakultasController::class, 'store']);
+// Route::post('prodi', [ProdiController::class, 'store']);
+// Route::post('mahasiswa', [MahasiswaController::class, 'store']);
 
-//PATCH (UPDATE)
-Route::patch('fakultas/{id}', [FakultasController::class, 'update']);
-Route::patch('prodi/{id}', [FakultasController::class, 'update']);
+// //PATCH (UPDATE)
+// Route::patch('fakultas/{id}', [FakultasController::class, 'update']);
+// Route::patch('prodi/{id}', [FakultasController::class, 'update']);
 
-//DELETE
-Route::delete('fakultas/{id}', [FakultasController::class, 'destroy']);
-Route::delete('prodi/{id}', [FakultasController::class, 'destroy']);
+// //DELETE
+// Route::delete('fakultas/{id}', [FakultasController::class, 'destroy']);
+// Route::delete('prodi/{id}', [FakultasController::class, 'destroy']);
